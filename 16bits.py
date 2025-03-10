@@ -6,7 +6,7 @@ import pandas as pd
 
 #-------------- Variáveis --------------#
 
-nbmant = 11
+nbmant = 23
 nbexpo = 8
 nbits = nbmant + nbexpo + 1
 
@@ -15,11 +15,10 @@ outlier_limit = 500
 nbits_array = [12, 14, 16, 18, 20, 24, 28, 32]
 
 print_coeffs = False
-generate_graph = True
+generate_graph = False
 
 bit_config = {
 #Bits :(Mantissa, Expoente)
-    10: (6, 3),
     12: (7, 4),
     14: (7, 6),
     16: (9, 6),
@@ -89,6 +88,7 @@ for i in range(len(nbits_array)):
 
     error_mean[i] = np.mean(np.abs(error[i]))
 
+print(error_factor*100)
 
 if generate_graph == True:
     plt.figure()

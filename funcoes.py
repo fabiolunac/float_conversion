@@ -134,7 +134,6 @@ def mf2f(val: int , nbmant: int, nbexpo: int) -> float:
 
 
 def read_file(path:str):
-
     values_out = []
 
     with open(path, "r") as file:
