@@ -15,7 +15,7 @@ outlier_limit = 500
 nbits_array = [12, 14, 16, 18, 20, 24, 28, 32]
 
 print_coeffs = False
-generate_graph = False
+generate_graph = True
 
 bit_config = {
 #Bits :(Mantissa, Expoente)
@@ -59,7 +59,7 @@ error_mean = np.zeros(len(nbits_array))
 #-------------- Leitura dos Dados Digitais --------------#
 
 for i in range(len(nbits_array)):
-    iir_path = f'filter_{nbits_array[i]}.txt'
+    iir_path = f'files/filter_{nbits_array[i]}.txt'
     dados = read_file(iir_path)
 
     dados = dados[:N]
@@ -88,8 +88,6 @@ for i in range(len(nbits_array)):
 
     error_mean[i] = np.mean(np.abs(error[i]))
 
-print(error_factor*100)
-
 if generate_graph == True:
     plt.figure()
     plt.plot(nbits_array,error_factor*100, marker = 'o')
@@ -102,7 +100,7 @@ if generate_graph == True:
     plt.axhline(y=1, color = 'r', label = 'Erro = 1%')
     for i in range(len(nbits_array)):
         plt.text(nbits_array[i], error_factor[i] * 100 + 0.2, f"{error_factor[i] * 100:.5f}%", 
-                ha='center', fontsize=8)  # Ajuste "+0.5" para deslocar o rótulo
+                ha='center', fontsize=8)
     plt.legend()
 
     plt.show()
